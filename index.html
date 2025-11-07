@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>MyMoji 로그인</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="logo">MyMoji</h1>
+      <section>
+        <h2>로그인</h2>
+        <form id="loginForm" class="form-box">
+          <label>
+            이메일
+            <input type="email" id="email" required />
+          </label>
+          <label>
+            비밀번호
+            <input type="password" id="password" required />
+          </label>
+          <button type="submit" id="loginBtn">로그인</button>
+          <button type="button" id="signupBtn">회원가입</button>
+        </form>
+      </section>
+    </main>
+    <script>
+      const signupBtn = document.getElementById("signupBtn");
+
+      signupBtn.addEventListener("click", function () {
+        // 회원가입 페이지로 이동
+        window.location.href = "signup.html";
+      });
+    </script>
+    <script type="module" src="./auth.js"></script>
+    <script type="module" src="./login.js"></script>
+  </body>
+</html>

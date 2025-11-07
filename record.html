@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>기록</title>
+    <!-- 공통 스타일 -->
+    <link rel="stylesheet" href="./home.css" />
+    <!-- 기록 전용 스타일 -->
+    <link rel="stylesheet" href="./record.css" />
+  </head>
+  <body>
+    <header class="greeting-bar">
+      <p><strong id="nickname">닉네임</strong>님의 기록 페이지</p>
+    </header>
+
+    <script type="module">
+      import { initNickname } from "./nickname.js";
+      initNickname();
+    </script>
+
+    <main>
+      <section class="log-wrap" aria-label="기록 리스트">
+        <h2 class="section-title">
+          기록
+          <button id="clearLogsBtn" class="clear-btn">비우기</button>
+        </h2>
+
+        <!-- 기록이 쌓일 영역 -->
+        <div id="logList" class="log-list">
+          <p class="log-empty">아직 기록이 없어요</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" data-page="record">🗓️<span>기록</span></button>
+      <button class="nav-item" data-page="home">🏠<span>홈</span></button>
+      <button class="nav-item" data-page="settings">⚙️<span>설정</span></button>
+    </nav>
+    <script type="module" src="./auth.js"></script>
+    <script type="module" src="./home.js"></script>
+    <script type="module" src="./record.js"></script>
+  </body>
+</html>

@@ -1,0 +1,233 @@
+/* 기본 */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #f6f7fb;
+  color: #222;
+}
+
+/* 상단 인삿말 바 */
+.greeting-bar {
+  position: sticky; /* 스크롤해도 상단 고정 느낌 */
+  top: 0;
+  text-align: center;
+  padding: 16px 8px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #ffffffcc; /* 살짝 투명한 흰색 */
+  backdrop-filter: blur(6px); /* 유리 느낌 (지원 브라우저에서) */
+  border-bottom: 1px solid #e9edf3;
+}
+
+/* ============================= */
+/* 이모티콘 중심 및 말풍선 배치 */
+/* ============================= */
+
+/* 무대(전체 영역) */
+.emoji-stage {
+  position: relative;
+  height: calc(100vh - 70px); /* 인삿말 제외 나머지 화면 채움 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 이모티콘: 화면 중앙 고정 */
+.emoji-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #e2e5ec;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 64px;
+  z-index: 2;
+}
+
+/* 말풍선 레이어: 중앙 기준 링 배치 */
+.bubble-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* 공통: 중앙을 기준으로 배치 */
+.bubble {
+  --angle: 0deg;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--ring))
+    rotate(calc(-1 * var(--angle)));
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #dfe3eb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: auto;
+}
+
+/* 링 반지름(필요시 조절) */
+:root {
+  --ring: 190px;
+}
+
+/* 각도: 270°(위)부터 시계방향으로 5개 */
+.bubble:nth-child(1) {
+  --angle: 270deg;
+}
+.bubble:nth-child(2) {
+  --angle: 342deg;
+}
+.bubble:nth-child(3) {
+  --angle: 54deg;
+}
+.bubble:nth-child(4) {
+  --angle: 126deg;
+}
+.bubble:nth-child(5) {
+  --angle: 198deg;
+}
+
+.bubble:hover {
+  transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--ring))
+    rotate(calc(-1 * var(--angle))) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 이모티콘 크기와 링 반지름(필요시 조절) */
+:root {
+  --emoji-size: 140px;
+}
+
+/* 문구를 이모티콘 아래로 이동 */
+.emoji-hint {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + var(--emoji-size) / 2 + 14px);
+  transform: translateX(-50%);
+  margin: 0;
+  color: #7a8599;
+  font-size: 14px;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* ================= */
+/* 모달 기본 스타일 */
+/* ================= */
+.modal {
+  display: none; /* JS로 열기 전까지 숨김 */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 24px 28px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 320px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-question {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* 슬라이더 스타일 */
+.slider-group {
+  margin-bottom: 24px;
+}
+
+#scoreSlider {
+  width: 100%;
+  accent-color: #2a6ef4;
+  cursor: pointer;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+
+.modal-confirm {
+  background-color: #2a6ef4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.modal-confirm:hover {
+  background-color: #1e56c9;
+}
+
+/* ===================== */
+/* 하단 내비게이션 바  */
+/* ===================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  border-top: 1px solid #e2e5ec;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.nav-item span {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.nav-item.active {
+  color: #2a6ef4;
+}
+
+.nav-item:hover {
+  color: #1e56c9;
+}

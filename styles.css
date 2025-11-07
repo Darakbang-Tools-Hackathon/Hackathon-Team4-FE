@@ -1,0 +1,84 @@
+/* 전체 페이지 기본 */
+body {
+  font-family: "Pretendard", system-ui, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 카드 형태의 중앙 박스 */
+main {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+}
+
+/* 제목 */
+h1 {
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #2a6ef4;
+}
+
+/* 입력칸 */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* 버튼 */
+button {
+  background-color: #2a6ef4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1e56c9;
+}
+
+.logo {
+  font-size: 28px;
+  color: #2a6ef4;
+  margin-bottom: 16px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가운데 정렬 */
+  gap: 1px; /* 각 입력칸 사이 간격 */
+}
+
+.form-box label {
+  width: 100%;
+  max-width: 250px; /* 입력칸 폭 제한 */
+  text-align: left;
+}
+
+.form-box input {
+  width: 100%;
+}

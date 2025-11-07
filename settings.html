@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>설정</title>
+    <link rel="stylesheet" href="./home.css" />
+  </head>
+  <body>
+    <header class="greeting-bar">
+      <p><strong id="nickname">닉네임</strong>님의 설정 페이지</p>
+    </header>
+
+    <script type="module">
+      import { initNickname } from "./nickname.js";
+      initNickname();
+    </script>
+
+    <main
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      "
+    >
+      <h2>설정 페이지 (개발 예정)</h2>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item" data-page="record">🗓️<span>기록</span></button>
+      <button class="nav-item" data-page="home">🏠<span>홈</span></button>
+      <button class="nav-item" data-page="settings">⚙️<span>설정</span></button>
+    </nav>
+    <script type="module" src="./auth.js"></script>
+    <script type="module" src="./home.js"></script>
+  </body>
+</html>

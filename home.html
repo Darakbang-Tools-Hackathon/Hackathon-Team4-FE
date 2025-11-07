@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./home.css" />
+    <title>MyMoji 홈</title>
+  </head>
+  <body>
+    <header class="greeting-bar">
+      <p><strong id="nickname">닉네임</strong>님, 오늘도 화이팅!</p>
+    </header>
+
+    <script type="module">
+      import { initNickname } from "./nickname.js";
+      initNickname();
+    </script>
+
+    <main>
+      <section class="emoji-stage" aria-label="오늘의 이모티콘">
+        <div class="emoji-placeholder" role="img" aria-label="이모티콘 자리">
+          🙂
+        </div>
+
+        <div class="bubble-layer" aria-label="질문 말풍선들">
+          <button class="bubble" data-trait="정서안정성">정서안정성</button>
+          <button class="bubble" data-trait="외향성">외향성</button>
+          <button class="bubble" data-trait="친화성">친화성</button>
+          <button class="bubble" data-trait="성실성">성실성</button>
+          <button class="bubble" data-trait="개방성">개방성</button>
+        </div>
+
+        <p class="emoji-hint">설문을 완료하면 이모티콘이 나타납니다</p>
+      </section>
+    </main>
+    <!-- 하단 내비게이션 바 -->
+    <nav class="bottom-nav">
+      <button class="nav-item" data-page="record">🗓️<span>기록</span></button>
+      <button class="nav-item active" data-page="home">
+        🏠<span>홈</span>
+      </button>
+      <button class="nav-item" data-page="settings">⚙️<span>설정</span></button>
+    </nav>
+
+    <!-- 모달 -->
+    <div id="questionModal" class="modal">
+      <div class="modal-content">
+        <h2 class="modal-question">질문 내용이 여기에 표시됩니다</h2>
+
+        <div class="slider-group">
+          <input
+            type="range"
+            id="scoreSlider"
+            name="score"
+            min="1"
+            max="5"
+            step="1"
+            value="3"
+          />
+          <div class="slider-labels">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </div>
+
+        <button class="modal-confirm">확인</button>
+      </div>
+    </div>
+    <script type="module" src="./auth.js"></script>
+    <script type="module" src="./home.js"></script>
+  </body>
+</html>
