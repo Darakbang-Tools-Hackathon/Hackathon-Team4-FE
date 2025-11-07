@@ -16,15 +16,42 @@
       initNickname();
     </script>
 
-    <main
-      style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh;
-      "
-    >
-      <h2>설정 페이지 (개발 예정)</h2>
+    <main>
+      <!-- 계정 섹션 -->
+      <section class="settings-section" aria-label="계정 설정">
+        <h2 class="section-title">계정</h2>
+        <button id="logoutBtn" class="clear-btn">로그아웃</button>
+      </section>
+
+      <!-- 테마 섹션 -->
+      <section class="settings-section" aria-label="화면 테마">
+        <h2 class="section-title">화면 테마</h2>
+        <div class="setting-item">
+          <label for="darkModeToggle">🌙 다크 모드</label>
+          <input type="checkbox" id="darkModeToggle" />
+        </div>
+      </section>
+
+      <!-- 데이터 관리 섹션 -->
+      <section class="settings-section" aria-label="데이터 관리">
+        <h2 class="section-title">데이터 관리</h2>
+        <button id="clearLogsBtn" class="danger-btn">기록 초기화</button>
+        <button id="clearPendingBtn">보류된 응답 삭제</button>
+      </section>
+
+      <!-- 앱 정보 섹션 -->
+      <section class="settings-section" aria-label="앱 정보">
+        <h2 class="section-title">앱 정보</h2>
+        <p>버전: v1.0.0</p>
+        <p>
+          <a
+            href="https://github.com/Darakbang-Tools-Hackathon/Hackathon-Team4-FE"
+            target="_blank"
+            >🔗 GitHub Repository</a
+          >
+        </p>
+        <p>문의: team4.mymoji@gmail.com</p>
+      </section>
     </main>
 
     <nav class="bottom-nav">
@@ -34,5 +61,6 @@
     </nav>
     <script type="module" src="./auth.js"></script>
     <script type="module" src="./home.js"></script>
+    <script type="module" src="./settings.js"></script>
   </body>
 </html>

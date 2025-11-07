@@ -22,15 +22,27 @@
           🙂
         </div>
 
-        <div class="bubble-layer" aria-label="질문 말풍선들">
-          <button class="bubble" data-trait="정서안정성">정서안정성</button>
-          <button class="bubble" data-trait="외향성">외향성</button>
-          <button class="bubble" data-trait="친화성">친화성</button>
-          <button class="bubble" data-trait="성실성">성실성</button>
-          <button class="bubble" data-trait="개방성">개방성</button>
+        <!-- 말풍선: 좌측 3개 -->
+        <div class="side-bubbles left" aria-label="왼쪽 질문들">
+          <button class="bubble" type="button"></button>
+          <button class="bubble" type="button"></button>
+          <button class="bubble" type="button"></button>
+        </div>
+
+        <!-- 말풍선: 우측 3개 -->
+        <div class="side-bubbles right" aria-label="오른쪽 질문들">
+          <button class="bubble" type="button"></button>
+          <button class="bubble" type="button"></button>
+          <button class="bubble" type="button"></button>
         </div>
 
         <p class="emoji-hint">설문을 완료하면 이모티콘이 나타납니다</p>
+        <!-- 답변 제출 버튼 -->
+        <div class="submit-wrap" style="text-align: center; margin-top: 24px">
+          <button id="submitAnswersBtn" class="primary-btn" disabled>
+            답변 제출
+          </button>
+        </div>
       </section>
     </main>
     <!-- 하단 내비게이션 바 -->

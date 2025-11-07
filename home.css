@@ -55,21 +55,8 @@ body {
   z-index: 2;
 }
 
-/* 말풍선 레이어: 중앙 기준 링 배치 */
-.bubble-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-/* 공통: 중앙을 기준으로 배치 */
+/* 말풍선 공통 */
 .bubble {
-  --angle: 0deg;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--ring))
-    rotate(calc(-1 * var(--angle)));
   padding: 10px 14px;
   border-radius: 999px;
   background: #fff;
@@ -77,41 +64,73 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   font-size: 14px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  pointer-events: auto;
-}
-
-/* 링 반지름(필요시 조절) */
-:root {
-  --ring: 190px;
-}
-
-/* 각도: 270°(위)부터 시계방향으로 5개 */
-.bubble:nth-child(1) {
-  --angle: 270deg;
-}
-.bubble:nth-child(2) {
-  --angle: 342deg;
-}
-.bubble:nth-child(3) {
-  --angle: 54deg;
-}
-.bubble:nth-child(4) {
-  --angle: 126deg;
-}
-.bubble:nth-child(5) {
-  --angle: 198deg;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease, color 0.2s ease;
+  max-width: 260px; /* 긴 문장 줄바꿈 */
+  text-align: left;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 한 줄일 때 말줄임 */
+  white-space: nowrap; /* 기본은 한 줄 */
 }
 
 .bubble:hover {
-  transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--ring))
-    rotate(calc(-1 * var(--angle))) scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-/* 이모티콘 크기와 링 반지름(필요시 조절) */
+/* 좌/우 스택 컨테이너 */
+.side-bubbles {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* 말풍선 세로 간격 */
+  pointer-events: none; /* 컨테이너는 클릭 막고 */
+}
+.side-bubbles .bubble {
+  pointer-events: auto;
+} /* 버블만 클릭 가능 */
+
+/* 중앙에서 좌우로 떨어진 거리 (이모티콘+여백) */
 :root {
   --emoji-size: 140px;
+  --center-gap: 500px;
+}
+
+/* 왼쪽 스택: 중앙 왼쪽으로 고정 */
+.side-bubbles.left {
+  left: calc(50% - var(--center-gap));
+  align-items: flex-end;
+}
+/* 오른쪽 스택: 중앙 오른쪽으로 고정 */
+.side-bubbles.right {
+  right: calc(50% - var(--center-gap));
+  align-items: flex-start;
+}
+
+/* 반응형(좁은 화면에서 간격/너비 조정) */
+@media (max-width: 720px) {
+  :root {
+    --center-gap: 200px;
+  }
+  .bubble {
+    max-width: 200px;
+    font-size: 13px;
+  }
+  .side-bubbles {
+    gap: 14px;
+  }
+}
+@media (max-width: 520px) {
+  :root {
+    --center-gap: 165px;
+    --emoji-size: 120px;
+  }
+  .bubble {
+    max-width: 160px;
+    font-size: 12px;
+  }
 }
 
 /* 문구를 이모티콘 아래로 이동 */
@@ -230,4 +249,38 @@ body {
 
 .nav-item:hover {
   color: #1e56c9;
+}
+
+/* ===================== */
+/* 제출 버튼  */
+/* ===================== */
+/* 제출 버튼 위치: 이모티콘 아래 중앙 */
+.submit-wrap {
+  position: absolute;
+  left: 50%;
+  /* 이모티콘 원의 하단에서 약간 더 아래 */
+  top: calc(50% + var(--emoji-size) / 2 + 28px);
+  transform: translateX(-50%);
+  z-index: 3; /* 말풍선/이모티콘보다 위 */
+  pointer-events: auto;
+}
+
+.primary-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #2a6ef4;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 6px 14px rgba(42, 110, 244, 0.25);
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+.primary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.primary-btn:active {
+  transform: translateY(1px);
 }
