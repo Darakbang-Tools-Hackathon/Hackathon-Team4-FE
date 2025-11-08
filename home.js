@@ -8,6 +8,7 @@ import {
 
 let currentUid = null;
 let idToken = null;
+let latestEmojiDesc = ""; // 서버가 준 설명 저장용
 
 onAuthStateChanged(auth, async (user) => {
   if (user) {
@@ -28,6 +29,7 @@ const confirmBtn = document.querySelector(".modal-confirm");
 const bubbles = document.querySelectorAll(".bubble");
 let activeBubble = null; // 현재 클릭된 말풍선
 const submitBtn = document.getElementById("submitAnswersBtn");
+const emojiEl = document.querySelector(".emoji-placeholder");
 
 if (modal && confirmBtn && bubbles.length) {
   // 말풍선 클릭 → 모달 열기 + 질문 텍스트 주입 + 선택 초기화
@@ -271,8 +273,16 @@ if (submitBtn) {
         b.style.opacity = 0.7;
       });
 
-      alert("제출 완료! 기록 탭에서 확인해봐.");
-      window.location.href = "record.html";
+      // 1) 중앙 이모티콘 교체
+      if (emojiEl && data?.emoji) {
+        emojiEl.textContent = data.emoji;
+      }
+
+      // 2) 설명 저장(이모티콘 클릭 시 모달에서 사용)
+      latestEmojiDesc = data?.description || "";
+
+      // alert("제출 완료! 기록 탭에서 확인해봐.");
+      // window.location.href = "record.html";
     } catch (err) {
       alert(`제출 실패: ${err.message || err}`);
     } finally {
